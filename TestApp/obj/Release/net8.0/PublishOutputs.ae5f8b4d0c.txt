@@ -1,0 +1,17 @@
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/TestApp
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/publish/web.config
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/web.config
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/appsettings.Development.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/appsettings.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/appsettings.Development.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/appsettings.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/publish/appsettings.Development.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/publish/appsettings.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/publish/TestApp.deps.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/publish/TestApp.runtimeconfig.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/TestApp.deps.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/publish/TestApp.runtimeconfig.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/TestApp.dll
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/TestApp.deps.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/TestApp.runtimeconfig.json
+/Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp/publish/TestApp.pdb

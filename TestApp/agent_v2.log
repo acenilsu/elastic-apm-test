@@ -1,0 +1,55 @@
+[2025-11-25 14:41:35Z] Check if System.Diagnostics.DiagnosticSource is loaded
+[2025-11-25 14:41:35Z] Assemblies loaded:
+System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e
+dotnet, Version=8.0.402.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ElasticApmAgentStartupHook, Version=1.34.0.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22
+netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+System.Collections, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Linq, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.Loader, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.InteropServices, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Diagnostics.Process, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.ComponentModel.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Console, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Microsoft.Win32.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+[2025-11-25 14:41:35Z] No System.Diagnostics.DiagnosticSource loaded. Load using AssemblyLoadContext.Default
+[2025-11-25 14:41:35Z] System.Diagnostics.DiagnosticSource 8.0.0.0 loaded
+[2025-11-25 14:41:35Z] Get Elastic.Apm.StartupHook.Loader.Loader type
+[2025-11-25 14:41:35Z] Get Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+[2025-11-25 14:41:35Z] Invoke Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+Building...
+[2025-11-25 14:41:36Z] Check if System.Diagnostics.DiagnosticSource is loaded
+[2025-11-25 14:41:36Z] Assemblies loaded:
+System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e
+TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ElasticApmAgentStartupHook, Version=1.34.0.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22
+netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+System.Collections, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Linq, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.Loader, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.InteropServices, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Diagnostics.Process, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.ComponentModel.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Console, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Microsoft.Win32.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+[2025-11-25 14:41:36Z] No System.Diagnostics.DiagnosticSource loaded. Load using AssemblyLoadContext.Default
+[2025-11-25 14:41:36Z] System.Diagnostics.DiagnosticSource 8.0.0.0 loaded
+[2025-11-25 14:41:36Z] Get Elastic.Apm.StartupHook.Loader.Loader type
+[2025-11-25 14:41:36Z] Get Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+[2025-11-25 14:41:36Z] Invoke Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5050
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/nilsumelis/ElasticApmAgent_1.34.1/TestApp
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
