@@ -179,14 +179,16 @@ curl http://localhost:8200/ | jq .
 
 ## .NET Uygulaması APM Entegrasyonu
 
-### 1. Elastic APM NuGet Paketini Ekleyin
+### Yöntem 1: NuGet Paketi ile Entegrasyon (Önerilen)
+
+#### 1. Elastic APM NuGet Paketini Ekleyin
 
 ```bash
 cd /path/to/your/project
 dotnet add package Elastic.Apm.NetCoreAll
 ```
 
-### 2. Program.cs Dosyasını Güncelleyin
+#### 2. Program.cs Dosyasını Güncelleyin
 
 **Önce:**
 ```csharp
@@ -212,22 +214,7 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-### 3. appsettings.json'a Debug Logging Ekleyin (Opsiyonel)
-
-```json
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning",
-      "Elastic.Apm": "Debug"
-    }
-  },
-  "AllowedHosts": "*"
-}
-```
-
-### 4. Uygulamayı Çalıştırın
+#### 3. Uygulamayı Çalıştırın
 
 ```bash
 export ELASTIC_APM_SERVER_URLS="http://localhost:8200"
@@ -238,7 +225,43 @@ export ELASTIC_APM_CENTRAL_CONFIG="false"
 dotnet run --urls "http://localhost:5050"
 ```
 
+### Yöntem 2: Startup Hook ile Sıfır Kod Değişikliği
+
+Bu yöntem, uygulamanızın kodunu değiştirmeden APM entegrasyonu sağlar.
+
+#### 1. Startup Hook DLL'ini Edinin
+
+Elastic APM Agent'ın startup hook DLL'ini indirin veya projenizde bulun:
+```
+ElasticApmAgentStartupHook.dll
+```
+
+#### 2. Uygulamayı Startup Hook ile Çalıştırın
+
+**Mac/Linux:**
+```bash
+export DOTNET_STARTUP_HOOKS="/path/to/ElasticApmAgentStartupHook.dll"
+export ELASTIC_APM_SERVER_URLS="http://localhost:8200"
+export ELASTIC_APM_SERVICE_NAME="TestApp"
+export ELASTIC_APM_LOG_LEVEL="debug"
+export ELASTIC_APM_CENTRAL_CONFIG="false"
+
+dotnet run --urls "http://localhost:5050"
+```
+
+**Windows:**
+```cmd
+set DOTNET_STARTUP_HOOKS=C:\path\to\ElasticApmAgentStartupHook.dll
+set ELASTIC_APM_SERVER_URLS=http://localhost:8200
+set ELASTIC_APM_SERVICE_NAME=TestApp
+set ELASTIC_APM_LOG_LEVEL=debug
+set ELASTIC_APM_CENTRAL_CONFIG=false
+
+dotnet run --urls http://localhost:5050
+```
+
 **Environment Variables:**
+- `DOTNET_STARTUP_HOOKS`: Startup hook DLL'inin tam yolu
 - `ELASTIC_APM_SERVER_URLS`: APM Server adresi
 - `ELASTIC_APM_SERVICE_NAME`: Kibana'da görünecek servis adı
 - `ELASTIC_APM_LOG_LEVEL`: Log seviyesi (debug/info/warning/error)
@@ -280,11 +303,6 @@ Bu, verilerin APM Server'a gönderildiğini gösterir.
    - Errors (Hatalar)
    - Metrics (Metrikler)
    - Service Map (Servis haritası)
-
-**Eğer veri görmüyorsanız:**
-- Sağ üstteki **zaman seçiciyi** "Last 1 hour" yapın
-- **Environment** filtresini "All" veya "Development" yapın
-- 1-2 dakika bekleyin (veriler index'lenirken)
 
 ---
 
@@ -337,22 +355,6 @@ curl http://localhost:8200/
 # Uygulama loglarında "Sent items to server" araması yapın
 ```
 
-### Problem: Port Zaten Kullanımda
-
-**Neden:** Başka bir uygulama aynı portu kullanıyor.
-
-**Çözüm:**
-```bash
-# Portu kullanan process'i bulun
-lsof -ti:5050
-
-# Process'i öldürün
-lsof -ti:5050 | xargs kill -9
-
-# Veya farklı bir port kullanın
-dotnet run --urls "http://localhost:5051"
-```
-
 ---
 
 ## Container'ları Yönetme
@@ -390,72 +392,6 @@ docker ps -a | grep -E "elasticsearch|kibana|apm-server"
 
 ---
 
-## Docker Compose ile Kurulum (Alternatif)
-
-Yukarıdaki tüm adımları tek bir `docker-compose.yml` dosyası ile yapabilirsiniz:
-
-```yaml
-version: '3.8'
-
-services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
-    container_name: elasticsearch
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    networks:
-      - elastic
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.11.0
-    container_name: kibana
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    ports:
-      - "5601:5601"
-    networks:
-      - elastic
-    depends_on:
-      - elasticsearch
-
-  apm-server:
-    image: docker.elastic.co/apm/apm-server:7.17.0
-    container_name: apm-server
-    command: >
-      apm-server -e
-        -E apm-server.host=0.0.0.0:8200
-        -E apm-server.auth.anonymous.enabled=true
-        -E output.elasticsearch.hosts=["http://elasticsearch:9200"]
-    ports:
-      - "8200:8200"
-    networks:
-      - elastic
-    depends_on:
-      - elasticsearch
-
-networks:
-  elastic:
-    driver: bridge
-```
-
-**Kullanım:**
-```bash
-# Başlat
-docker-compose up -d
-
-# Durdur
-docker-compose down
-
-# Logları görüntüle
-docker-compose logs -f
-```
-
----
-
 ## Güvenlik Notları
 
 ⚠️ **Bu kurulum sadece geliştirme/test ortamları içindir!**
@@ -472,6 +408,7 @@ docker-compose logs -f
 
 ## Kaynaklar
 
+- [Elastic APM .NET Agent - Zero Code Change Setup](https://www.elastic.co/docs/reference/apm/agents/dotnet/setup-dotnet-net-core#zero-code-change-setup)
 - [Elastic APM .NET Agent Dokümantasyonu](https://www.elastic.co/guide/en/apm/agent/dotnet/current/index.html)
 - [APM Server Dokümantasyonu](https://www.elastic.co/guide/en/apm/server/current/index.html)
 - [Elasticsearch Dokümantasyonu](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
