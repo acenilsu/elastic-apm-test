@@ -231,9 +231,43 @@ Bu yöntem, uygulamanızın kodunu değiştirmeden APM entegrasyonu sağlar.
 
 #### 1. Startup Hook DLL'ini Edinin
 
-Elastic APM Agent'ın startup hook DLL'ini indirin veya projenizde bulun:
+**Seçenek A: GitHub Releases'den İndirme**
+
+[Elastic APM .NET Agent GitHub Releases](https://github.com/elastic/apm-agent-dotnet/releases) sayfasından `ElasticApmAgent_<version>.zip` dosyasını indirin.
+
+Örneğin, versiyon 1.34.1 için:
+```bash
+# Mac/Linux
+curl -L -O https://github.com/elastic/apm-agent-dotnet/releases/download/v1.34.1/ElasticApmAgent_1.34.1.zip
+
+# Zip'i açın
+unzip ElasticApmAgent_1.34.1.zip -d ElasticApmAgent
+
+# DLL yolunu bulun
+ls ElasticApmAgent/ElasticApmAgentStartupHook.dll
 ```
-ElasticApmAgentStartupHook.dll
+
+**Seçenek B: Git Clone ile Projeyi Çekme**
+
+Eğer projeyi git clone ile çektiyseniz, DLL dosyası zaten mevcut:
+
+```bash
+# Projeyi klonlayın
+git clone https://github.com/elastic/apm-agent-dotnet.git
+cd apm-agent-dotnet
+
+# DLL'i bulun (build edilmiş release klasöründe)
+find . -name "ElasticApmAgentStartupHook.dll"
+```
+
+**Veya** bu GitHub reposunu kullanıyorsanız, DLL dosyası proje kök dizininde:
+```bash
+# Mevcut proje dizininizde
+cd /Users/nilsumelis/ElasticApmAgent_1.34.1
+ls ElasticApmAgentStartupHook.dll
+
+# Tam yol
+/Users/nilsumelis/ElasticApmAgent_1.34.1/ElasticApmAgentStartupHook.dll
 ```
 
 #### 2. Uygulamayı Startup Hook ile Çalıştırın
